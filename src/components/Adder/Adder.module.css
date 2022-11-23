@@ -1,0 +1,9 @@
+.Adder{ 
+    width:70%;
+    height:15vh;
+    border:1px solid silver;
+    border-radius:10px;
+    display:flex; 
+    flex-direction: column;
+    align-items: flex-start;
+}
