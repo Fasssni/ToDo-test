@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
+import TaskForm from "../components/TaskForm/TaskForm";
+import { TaskContext } from "../Contex";
 
 const Upcoming=()=>{
+    const data=useContext(TaskContext)
 
-    return<h2>upcoming</h2>
+  
+
+    return(
+     <div className="main_view">
+      
+      {data.filterUpcoming?.map(task=>{
+        return <TaskForm key={task.id} 
+                         task={task}
+                         deleteTask={data.deleteTask}/>
+      })
+
+      }
+     
+      
+    </div>
+    )
 }
 
 export default Upcoming

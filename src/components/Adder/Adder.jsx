@@ -1,21 +1,30 @@
 import React, { useEffect, useState } from "react";
 import {v4 as uuidV4} from "uuid"
 import cl from "./Adder.module.css"
-import dayjs from "dayjs"
+
 import { flushSync } from 'react-dom'
 
 
 
 const Adder=({onAddTask})=>{ 
-    const [value,setValue]=useState({id:uuidV4(),title:"", desc:"", date: "",status:""})
+    const [value,setValue]=useState({id:uuidV4(),title:"", desc:"", dateStart:"", date: "",status:""})
+   
+    const toAdd=(e)=>{
+        e.preventDefault()
 
-    const toAdd=()=>{ 
-        
+        if(value.title){
         onAddTask(value)
+        return(setValue({id:uuidV4(),title:"", desc:"", date: "",status:""}))
+    }
+
+        
+        else{ 
+            alert("Пожалуйста, дайте заголовок задаче")
+        }
         
       
         
-      return(setValue({id:uuidV4(),title:"", desc:"", date: "",status:""}))
+      
 
 
     }
@@ -34,10 +43,15 @@ const Adder=({onAddTask})=>{
              onChange={(e)=>setValue({...value,desc:e.target.value})}/>
 
             <input className={cl.date} type="datetime-local"
+             value={value.dateStart}
+             onChange={(e)=>setValue({...value,dateStart:e.target.value})}/>
+            
+
+            <input className={cl.date} type="datetime-local"
              value={value.date}
              onChange={(e)=>setValue({...value,date:e.target.value})}/>
             
-            <button onClick={()=>toAdd()}> 
+            <button onClick={(e)=>toAdd(e)}> 
                 Add
             </button>
 
