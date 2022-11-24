@@ -1,13 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Menu=()=>{
+    const el=[{name:"Upcoming",to:"/upcoming"},{name:"Today",to:"/today"},{name:"Completed",to:"/completed"},]
 
     return( 
         <div className="menu">
         <ul>
-            <a href="/upcoming"><li >upComing</li></a> 
-            <a  href="/today"><li>today</li></a> 
-            <a href="/completed"><li>completed</li></a> 
+            {el.map(p=>
+            <li className="menu_link"><Link to={p.to}>{p.name}</Link></li> )
+            }
+           
         </ul>
         </div>
     )

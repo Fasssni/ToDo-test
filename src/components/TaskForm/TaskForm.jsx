@@ -4,7 +4,7 @@ import useLocalStorage from "../../useLocalStorage"
 import edit from "../../assets/edit.svg"
 import del from "../../assets/delete.svg"
 import dayjs from "dayjs"
-
+import "../../style.css"
 
 const TaskForm=({task,deleteTask, onComplete})=>{
 
@@ -23,10 +23,12 @@ const TaskForm=({task,deleteTask, onComplete})=>{
 
                     </div>
                      <div  className={cl.info__part}>
-                        <h3 className={cl.title}>{task.title}</h3>
+                        <p className={cl.title}>{task.title}</p>
                         <p  className={cl.desc}>{task.desc}</p>
-                        <p className={cl.date}>{task.dateStart?dayjs(task.dateStart).format("MMM D HH:mm"):task.dateStart}</p> 
+                        <div className={cl.dates}>
+                        <p className={cl.dateStart}>{task.dateStart?dayjs(task.dateStart).format("MMM D HH:mm"):task.dateStart}</p> 
                         <p className={cl.date}>{task.date?dayjs(task.date).format("MMM D HH:mm"):task.date}</p> 
+                        </div>
                      </div>  
               
             </div>

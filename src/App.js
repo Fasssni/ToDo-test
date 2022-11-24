@@ -20,9 +20,10 @@ function App() {
   return (
 
     <div className="App">
-    <Menu></Menu>
+    
 
     <BrowserRouter>
+    <Menu></Menu>
      <Routes>
       <Route path="/" element={<Today/>}/>
       <Route path="/upcoming" element={<Upcoming/>}/>

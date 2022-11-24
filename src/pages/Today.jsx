@@ -14,6 +14,7 @@ const Today=({onAddTask,tasks,deleteTask})=>{
 
     return(
      <div className="main_view">
+      <title>Сегодня</title>
       
       {data.filterToday?.map(task=>{
         return <TaskForm key={task.id} 
