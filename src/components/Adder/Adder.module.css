@@ -100,28 +100,6 @@
     margin-right:0.8rem;
 }
 
-.isClicked{
-    display:flex; 
-    width:60%;
-    justify-content:flex-start;
-    cursor: pointer;
-
-}
-
-.icon{
-    width:1.2rem;
-    margin-right:.5rem;
-}
-
-.action{
-    font-weight: 300;
-    font-size:1rem;
-    color:rgb(114, 111, 108)
-}
-
-.action:hover{ 
-    color:#0072ff;
-}
 @media only screen and (max-width:800px){
     .inputs{
         flex-direction:column;

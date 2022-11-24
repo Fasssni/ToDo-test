@@ -32,20 +32,76 @@ body{
 .menu{
     position:fixed;
     z-index: 99;
+    width:25%;
+    height:110vh;
+    background-color: rgb(249, 245, 239);
+    display:flex; 
+    justify-content: flex-start;
+    align-items: flex-start;
+
+
 }
 
 
 li{
+    list-style: none;
  
 }
 a{
     text-decoration: none;
     color:black;
 }
+.group{
+    width:83%;
+    margin-top:10%;
+    margin-left:5%;
+}
+.els{ 
+    width:100%;
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    
+    padding: 5px 15px;
+    
+    border-radius: 6px;
+    cursor: pointer;
 
+    
+
+}
+
+.els:hover{
+    background-color: rgb(174, 168, 161);
+
+}
 
 .menu_link{ 
    
 
 
+}
+
+
+.isClicked{
+    display:flex; 
+    width:60%;
+    justify-content:flex-start;
+    cursor: pointer;
+
+}
+
+.icon{
+    width:1.2rem;
+    margin-right:.5rem;
+}
+
+.action{
+    font-weight: 300;
+    font-size:1rem;
+    color:rgb(114, 111, 108)
+}
+
+.action:hover{ 
+    color:#0072ff;
 }

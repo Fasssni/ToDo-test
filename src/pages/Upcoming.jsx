@@ -13,7 +13,8 @@ const Upcoming=()=>{
       {data.filterUpcoming?.map(task=>{
         return <TaskForm key={task.id} 
                          task={task}
-                         deleteTask={data.deleteTask}/>
+                         deleteTask={data.deleteTask}
+                         onComplete={data.onComplete}/>
       })
 
       }

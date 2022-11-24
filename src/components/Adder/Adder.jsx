@@ -1,46 +1,22 @@
 import React, { useEffect, useState } from "react";
 import {v4 as uuidV4} from "uuid"
 import cl from "./Adder.module.css"
-import add from "../../assets/add.svg"
+
 
 import { flushSync } from 'react-dom'
 
 
 
-const Adder=({onAddTask})=>{ 
-    const [value,setValue]=useState({id:uuidV4(),title:"", desc:"", dateStart:"", date: "",complete:false})
-
-    const [isClicked,setIsClicked]=useState(false)
-   
-    const toAdd=(e)=>{
-        e.preventDefault()
-
-        if(value.title){
-        onAddTask(value)
-        return(setValue({id:uuidV4(),title:"", desc:"", date: "",status:""}))
-    }
-
-        
-        else{ 
-            alert("Пожалуйста, дайте заголовок задаче")
-        }
-        
-      
-        
-      
-
+const Adder=({toAdd,value,setValue,setIsClicked})=>{ 
+    const universalFuncion=()=>{
+        toAdd(value)
+        setIsClicked(true)
 
     }
-
-   
-    
     return(
         
         <div className={cl.Adder}>
-
-        {isClicked?
-        
-         <div>      
+            
          <div className={cl.container}>
             <input className={cl.title} type="text"
             value={value.title}
@@ -71,23 +47,18 @@ const Adder=({onAddTask})=>{
 
             </div>
             <div className={cl.btns}>
-                    <button onClick={()=>setIsClicked(false)} className={cl.button__second} > 
+                    <button onClick={()=>setIsClicked(true)} className={cl.button__second} > 
                         Отмена
                     </button>
-                    <button className={cl.button} onClick={(e)=>toAdd(e)}> 
+                    <button className={cl.button} onClick={()=>universalFuncion(value)}> 
                         Добавить задачу
                     </button>
             </div>
-            </div> 
+          
             
-            :
-            <div className={cl.isClicked} onClick={()=>setIsClicked(true)}>
-                 <img className={cl.icon} src={add} ></img>
-                 <p className={cl.action}>Добавить задачу</p>
-
-            </div>
-            
-            }
+       
+      
+      
 
           
 

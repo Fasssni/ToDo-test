@@ -30,7 +30,7 @@ export const Context=({children})=>{
        setTask(prevTasks=>{
         return prevTasks.map(task=>{
           if(task.id==id){
-            return {...task, complete:true}
+            return {...task, complete:true,date:dayjs().format("MMM D HH:mm")}
           }
           else{
             return task
@@ -62,26 +62,37 @@ export const Context=({children})=>{
           return null
 
         }
-    }, [filterExpired])
+    }, [filterExpired,tasks])
 
 
     const filterUpcoming=useMemo(()=>{
       const dateNow=dayjs()
       if(tasks){
-        return tasks.filter(f=>!filterExpired.includes(f)&&!filterToday.includes(f))}
+        return tasks.filter(f=>!filterExpired.includes(f)&&!filterToday.includes(f)&&f.complete!==true)}
 
         else{
           return null
         }
-    }, [filterToday,filterExpired])
+    }, [filterToday,filterExpired,tasks])
 
-    const completedTasks=[]
-
-    useEffect(()=>{
-      completedTasks.push(tasks.filter(f2=>f2.complete==true))
-      console.log(completedTasks)
-
+    const completedTasks=useMemo(()=>{
+                            return tasks.filter(f2=>f2.complete==true)
+    
     },[tasks])
+
+    const onUpdate=(edited)=>{
+    
+       setTask(prevTask=>{
+        return prevTask.map(x=>{
+          if(x.id==edited.id){
+            return edited
+          }else{
+            return x
+          }
+        })
+       })
+
+    }
  
 
     const value={
@@ -93,6 +104,7 @@ export const Context=({children})=>{
         filterUpcoming,
         onComplete,
         completedTasks,
+        onUpdate,
     }
     
    console.log(filterToday)
