@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { createContext } from "react";
 import useLocalStorage from "./useLocalStorage";
 import dayjs from "dayjs"
@@ -17,11 +17,27 @@ export const Context=({children})=>{
       setTask([...tasks,newTask])
     }
   
+
     const deleteTask=(id)=>{ 
       setTask(prevTasks=>{
         return prevTasks.filter(task=>task.id!==id)
       }
       )
+    }
+
+    const onComplete=(id)=>{
+      console.log("worked")
+       setTask(prevTasks=>{
+        return prevTasks.map(task=>{
+          if(task.id==id){
+            return {...task, complete:true}
+          }
+          else{
+            return task
+          }
+        })
+       })
+
     }
     
   
@@ -40,7 +56,7 @@ export const Context=({children})=>{
     const filterToday=useMemo(()=>{
       const dateNow=dayjs()
       if(tasks){
-        return tasks.filter(f=>!filterExpired.includes(f)&&(!f.dateStart||dayjs(f.dateStart).format("D")-dayjs().format("D")<1))}
+        return tasks.filter(f=>(!filterExpired.includes(f))&&(!f.dateStart||dayjs(f.dateStart).format("D")-dayjs().format("D")<1)&&f.complete!==true)}
         else{
 
           return null
@@ -58,7 +74,14 @@ export const Context=({children})=>{
           return null
         }
     }, [filterToday,filterExpired])
-    
+
+    const completedTasks=[]
+
+    useEffect(()=>{
+      completedTasks.push(tasks.filter(f2=>f2.complete==true))
+      console.log(completedTasks)
+
+    },[tasks])
  
 
     const value={
@@ -68,9 +91,11 @@ export const Context=({children})=>{
         filterExpired,
         filterToday, 
         filterUpcoming,
+        onComplete,
+        completedTasks,
     }
     
-   
+   console.log(filterToday)
 
     return( 
         <TaskContext.Provider value={value}>

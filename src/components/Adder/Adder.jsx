@@ -7,7 +7,7 @@ import { flushSync } from 'react-dom'
 
 
 const Adder=({onAddTask})=>{ 
-    const [value,setValue]=useState({id:uuidV4(),title:"", desc:"", dateStart:"", date: "",status:""})
+    const [value,setValue]=useState({id:uuidV4(),title:"", desc:"", dateStart:"", date: "",complete:false})
    
     const toAdd=(e)=>{
         e.preventDefault()
@@ -33,27 +33,42 @@ const Adder=({onAddTask})=>{
     
     return(
         <div className={cl.Adder}>
-
+                      
+         <div className={cl.container}>
             <input className={cl.title} type="text"
             value={value.title}
+            rows="3"
+            placeholder="Добавьте название задачи"
             onChange={(e)=>setValue({...value,title:e.target.value})}/>
 
-            <input className={cl.desc} type="text"
+            <input className={cl.desc} type="text" 
+            placeholder="Описание задачи"
             value={value.desc}
              onChange={(e)=>setValue({...value,desc:e.target.value})}/>
-
-            <input className={cl.date} type="datetime-local"
+            <div className={cl.inputs}>
+            <label className={cl.label} for="start">Старт</label>
+            <input className={cl.date} 
+             id="start" 
+             type="datetime-local"
              value={value.dateStart}
              onChange={(e)=>setValue({...value,dateStart:e.target.value})}/>
             
-
-            <input className={cl.date} type="datetime-local"
+            <label className={cl.label} for="start">Финиш</label>
+            <input id="finish"
+             className={cl.date} type="datetime-local"
              value={value.date}
              onChange={(e)=>setValue({...value,date:e.target.value})}/>
-            
-            <button onClick={(e)=>toAdd(e)}> 
-                Add
+            </div>
+            </div>
+            <div className={cl.btns}>
+            <button className={cl.button__second} > 
+                Отмена
             </button>
+            <button className={cl.button} onClick={(e)=>toAdd(e)}> 
+                Добавить задачу
+            </button>
+            </div>
+            
 
         </div>
     )

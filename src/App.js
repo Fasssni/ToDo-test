@@ -7,7 +7,7 @@ import Completed from "./pages/Completed";
 import Today from "./pages/Today";
 import Upcoming from "./pages/Upcoming";
 import useLocalStorage from "./useLocalStorage"
-
+import "./style.css"
 
 function App() {
   

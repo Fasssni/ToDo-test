@@ -6,7 +6,7 @@ import del from "../../assets/delete.svg"
 import dayjs from "dayjs"
 
 
-const TaskForm=({task,deleteTask})=>{
+const TaskForm=({task,deleteTask, onComplete})=>{
 
     const [isClicked, setIsClicked]=useState(false)
     const [isOver, setIsOver]=useState(false)
@@ -19,9 +19,9 @@ const TaskForm=({task,deleteTask})=>{
         onMouseOver={()=>setIsOver(true)}
         onMouseOut={()=>setIsOver(false)}> 
             <div className={cl.left__side}> 
-                    <div className={cl.marker}></div>
-                      
+                    <div className={cl.marker} onClick={()=>onComplete(task.id)}>
 
+                    </div>
                      <div  className={cl.info__part}>
                         <h3 className={cl.title}>{task.title}</h3>
                         <p  className={cl.desc}>{task.desc}</p>

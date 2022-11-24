@@ -1,9 +1,118 @@
 .Adder{ 
+    width:100%;
+    height:auto;
+}
+.container{ 
     width:70%;
-    height:15vh;
+    height:auto;
     border:1px solid silver;
     border-radius:10px;
     display:flex; 
     flex-direction: column;
     align-items: flex-start;
+    padding:15px 10px;
+}
+
+.title{ 
+    outline: none;
+    border:none;
+    width:80%;
+    font-size:1rem;
+
+    
+}
+
+.desc{ 
+    outline: none;
+    border:none;
+    width:80%;
+    font-size: 12px;
+    margin-top:1rem;
+
+}
+.inputs{
+    font-size:0.8rem;
+    margin-top:2rem;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width:100%;
+    
+   
+}
+
+
+.date{ 
+    margin-right:0.8rem;
+    width:30%;
+    border:none;
+    outline:none;
+    background-color: #0072ff;
+    color:white;
+    
+}
+.btns{
+   display:flex;
+   width:100%;
+   justify-content: flex-end;
+   width:70%;
+   margin-top:0.5rem;
+   padding-top:0;
+}
+.button{
+    cursor: pointer;
+    right:0;
+    margin-left:0.6rem;
+   
+    padding:.8px 15px;
+    border:none;
+    color:white;
+    background-color: #0072ff ;
+    font-size:0.7rem;
+    border-radius: 5px;
+    
+
+}
+
+.button__second{
+    cursor: pointer;
+    right:0;
+    margin-left:0.6rem;
+   
+    padding:8px 15px;
+    border:none;
+    color:#0072ff;
+    background-color: rgb(243, 239, 239) ;
+    font-size:0.7rem;
+    border-radius: 5px;
+    
+
+}
+
+.label{ 
+    margin-right:0.8rem;
+}
+
+
+@media only screen and (max-width:800px){
+    .inputs{
+        flex-direction:column;
+        width:100%;
+        align-items:center;
+    }
+
+    .date{ 
+        background-color: #0072ff;
+        color:white;
+        width:100%;
+        margin-right:0;
+        border:none;
+        outline:none;
+    }
+
+    .btns{
+        font-size:0.6rem;
+        
+    }
+
 }

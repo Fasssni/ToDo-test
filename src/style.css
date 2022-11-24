@@ -3,15 +3,17 @@ body{
 }
 
 .App{
-    height:110vh; 
+    height:auto; 
     width:100%; 
-    position: absolute;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
 }
 
 .main_view{ 
     position:relative;
     width:70%;
-    margin-left:30%;
+    margin-left:20%;
     margin-top:0;
     height:110vh;
     display:flex;
@@ -20,4 +22,9 @@ body{
     gap:4;
     justify-content: flex-start;
 
+}
+
+.menu{
+    position:fixed;
+    z-index: 99;
 }

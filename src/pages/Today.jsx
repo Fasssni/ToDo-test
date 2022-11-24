@@ -18,7 +18,8 @@ const Today=({onAddTask,tasks,deleteTask})=>{
       {data.filterToday?.map(task=>{
         return <TaskForm key={task.id} 
                          task={task}
-                         deleteTask={data.deleteTask}/>
+                         deleteTask={data.deleteTask}
+                         onComplete={data.onComplete}/>
       })
 
       }
