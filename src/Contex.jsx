@@ -1,8 +1,10 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { createContext } from "react";
 import useLocalStorage from "./useLocalStorage";
 import dayjs from "dayjs"
 import relativeTime from "dayjs/plugin/relativeTime"
+import {storage} from "./firebase"
+import {getDownloadURL,ref,uploadBytesResumable} from "@firebase/storage"
 
 
 
@@ -81,7 +83,7 @@ export const Context=({children})=>{
     },[tasks])
 
     const onUpdate=(edited)=>{
-    
+       
        setTask(prevTask=>{
         return prevTask.map(x=>{
           if(x.id==edited.id){
@@ -95,6 +97,46 @@ export const Context=({children})=>{
     }
  
 
+
+    // Ниже настройки firebase
+
+    
+  const [progress,setProgress]=useState("wef")
+
+
+  
+  const uploadFiles = (file, setValue,value) => {
+    //
+    if (!file) return;
+    const sotrageRef = ref(storage, `/to-do-files/${file.name}`);
+    const uploadTask = uploadBytesResumable(sotrageRef, file);
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const prog = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setProgress(prog);
+      },
+      (error) => console.log(error),
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+        console.log("File available at", downloadURL)
+        return setValue(prevValue=>{ return{...prevValue,file:downloadURL}})
+        }
+
+      
+         
+
+      
+        );
+      }
+    );
+  };
+   
+  //// Выше настройки firebase
+
     const value={
         tasks,
         addTask,
@@ -105,6 +147,7 @@ export const Context=({children})=>{
         onComplete,
         completedTasks,
         onUpdate,
+        uploadFiles,
     }
     
    console.log(filterToday)

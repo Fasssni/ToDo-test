@@ -4,15 +4,29 @@ import cl from "./Adder.module.css"
 
 
 import { flushSync } from 'react-dom'
+import { useContext } from "react";
+import { TaskContext } from "../../Contex";
+import Upcoming from "../../pages/Upcoming";
 
 
 
 const Adder=({toAdd,value,setValue,setIsClicked})=>{ 
+
+    const  uploadFiles=useContext(TaskContext).uploadFiles
+    
     const universalFuncion=()=>{
         toAdd(value)
         setIsClicked(true)
-
     }
+
+    const fileHandler = (e) => {
+        e.preventDefault();
+        const file = e.target[0].files[0];
+        uploadFiles(file, setValue,value);
+      };
+    
+
+    
     return(
         
         <div className={cl.Adder}>
@@ -43,7 +57,15 @@ const Adder=({toAdd,value,setValue,setIsClicked})=>{
                          className={cl.date} type="datetime-local"
                          value={value.date}
                          onChange={(e)=>setValue({...value,date:e.target.value})}/>
-            </div>
+            </div> 
+                 <form onSubmit={fileHandler}>
+                    <input  type="file" className="input"/>
+                    <button type="submit">Upload</button>
+                </form>
+     
+    
+
+            
 
             </div>
             <div className={cl.btns}>

@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom"
 import { TaskContext } from "./Contex";
 import Menu from "./Menu";
@@ -7,15 +7,13 @@ import Completed from "./pages/Completed";
 import Today from "./pages/Today";
 import Upcoming from "./pages/Upcoming";
 import useLocalStorage from "./useLocalStorage"
-import "./style.css"
+import "./style.css" 
+
 
 function App() {
   
   const data=useContext(TaskContext)
-
-  // console.log(dayjs().format("MMM D HH:mm")<data.tasks[0].date)
   
-
 
   return (
 
@@ -24,6 +22,7 @@ function App() {
 
     <BrowserRouter>
     <Menu></Menu>
+    
      <Routes>
       <Route path="/" element={<Today/>}/>
       <Route path="/upcoming" element={<Upcoming/>}/>

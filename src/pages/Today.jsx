@@ -13,16 +13,20 @@ const Today=({onAddTask,tasks,deleteTask})=>{
   const [isEdit,setIsEdit]=useState(false)
    
 
-  const [value,setValue]=useState({id:uuidV4(),title:"", desc:"", dateStart:"", date: "",complete:false})
+  const [value,setValue]=useState({id:uuidV4(),title:"", desc:"", dateStart:"", date: "",complete:false, file:null})
 
   const data=useContext(TaskContext)
+ 
 
-  const toAdd=()=>{
+  const toAdd=()=>{ 
+     
     
 
     if(value.title){
+
     data.addTask(value)
-    return(setValue({id:uuidV4(),title:"", desc:"", date: "",status:""}))
+    
+    return(setValue({id:uuidV4(),title:"", desc:"", date: "",status:"", file:null}))
 }
 
     
@@ -32,7 +36,7 @@ const Today=({onAddTask,tasks,deleteTask})=>{
 }
 
   
-
+   console.log(data.tasks)
     return(
      <div className="main_view">
 
