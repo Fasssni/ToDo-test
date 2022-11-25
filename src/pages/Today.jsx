@@ -16,15 +16,25 @@ const Today=({onAddTask,tasks,deleteTask})=>{
   const [value,setValue]=useState({id:uuidV4(),title:"", desc:"", dateStart:"", date: "",complete:false, file:null})
 
   const data=useContext(TaskContext)
+  const {burger}=useContext(TaskContext)
+  
  
 
-  const toAdd=()=>{ 
+  
+  
+
+
+
+  const toAdd=(value)=>{ 
      
-    
+   
 
     if(value.title){
-
+   
+    
     data.addTask(value)
+    setIsClicked(true)
+   
     
     return(setValue({id:uuidV4(),title:"", desc:"", date: "",status:"", file:null}))
 }
@@ -38,9 +48,9 @@ const Today=({onAddTask,tasks,deleteTask})=>{
   
    console.log(data.tasks)
     return(
-     <div className="main_view">
+     <div className={burger?"main_view":"main_view_on"}>
 
-      <h2>Просрочено</h2>
+      <h2 className="title">Просрочено</h2>
             {data.filterExpired.length>0?
                 data.filterExpired?.map(task=>{
                   return <TaskForm key={task.id} 
@@ -52,11 +62,11 @@ const Today=({onAddTask,tasks,deleteTask})=>{
 
             
             :
-            <h3>У Вас нет просроченных задач!</h3>
+            <h3 class="ifno">У Вас нет просроченных задач!</h3>
           }
       
       
-      <h2>Сегодня</h2>
+      <h2 className="title">Сегодня</h2>
       {data.filterToday.length>0?
           data.filterToday?.map(task=>{
             return <TaskForm key={task.id} 
@@ -67,7 +77,7 @@ const Today=({onAddTask,tasks,deleteTask})=>{
 
       
       :
-      <h3>Место для Ваших задач на сегодня</h3>
+      <h3 class="ifno">Место для Ваших задач на сегодня</h3>
     }
     {isClicked?
 

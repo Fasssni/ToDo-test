@@ -5,19 +5,25 @@ import { TaskContext } from "../Contex";
 
 const Completed=()=>{
 
-   const data=useContext(TaskContext)
+   
+   const {burger,deleteTask,onComplete,completedTasks}=useContext(TaskContext)
   
     return(
-        <div className="main_view">
+        <div className={burger?"main_view":"main_view_on"}>
+         <h2 className="title">Выполненные</h2>
+            {completedTasks.length>0?
 
-{data.completedTasks?.map(task=>{
-        return <TaskForm key={task.id} 
-                         task={task}
-                         deleteTask={data.deleteTask}
-                         onComplete={data.onComplete}/>
-      })
+                completedTasks?.map(task=>{
+                        return <TaskForm key={task.id} 
+                                        task={task}
+                                        deleteTask={deleteTask}
+                                        onComplete={onComplete}/>
+                    })
 
-      }
+                
+                :  
+                <h3 class="ifno">У Вас пока нет выполненных задач..</h3>
+                    }
         </div>
     )
 }

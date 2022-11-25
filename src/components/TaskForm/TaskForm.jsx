@@ -20,6 +20,11 @@ const TaskForm=({task,deleteTask, onComplete})=>{
     const isComplete=window.location.origin+"/completed"
 
     const data=useContext(TaskContext)
+
+    function toPass(){
+        data.onUpdate(value)
+        setIsEdit(true)
+    }
  
 
  
@@ -37,21 +42,34 @@ const TaskForm=({task,deleteTask, onComplete})=>{
                         <div className={cl.marker} onClick={()=>onComplete(task.id)}>
 
                         </div>}
-                     <div  className={cl.info__part}>
-                        <p className={cl.title}>{task.title}</p>
-                        <p  className={cl.desc}>{task.desc}</p>
-                       { location==isComplete?
-                           <div className={cl.dates}>
-                         
-                            <p className={cl.dateStart}>Завершено:{task.date}</p>
-                           
-                           </div>
-                         
-                         :
-                        <div className={cl.dates}>
-                        <p className={cl.dateStart}>{task.dateStart?dayjs(task.dateStart).format("MMM D HH:mm"):task.dateStart}</p> 
-                        <p className={cl.date}>{task.date?dayjs(task.date).format("MMM D HH:mm"):task.date}</p> 
-                        </div>}
+                        <div className={cl.sep}>
+                              <div  className={cl.info__part}>
+                       
+                                <p className={cl.title}>{task.title}</p>
+                                <p  className={cl.desc}>{task.desc}</p>
+                               {location==isComplete?
+                                <div className={cl.dates}>
+                                
+                                    <p className={cl.dateStart}>Завершено:{task.date}</p>
+                                
+                                </div>
+                                
+                                :
+                                <div className={cl.dates}>
+                                <p className={cl.dateStart}>{task.dateStart?dayjs(task.dateStart).format("MMM D HH:mm"):task.dateStart}</p> 
+                                <p className={cl.date}>{task.date?dayjs(task.date).format("MMM D HH:mm"):task.date}</p> 
+                                </div>
+                                }
+                                
+                            </div>
+                            {task.file?
+                                <div className={cl.file}>
+                                    <a href={task.file}  target="_blank" className={cl.file_text}>
+                                        File
+                                    </a>
+                            </div> 
+                            :
+                            <></>}
                      </div>  
               
             </div>
@@ -82,8 +100,8 @@ const TaskForm=({task,deleteTask, onComplete})=>{
         :
         <Adder value={value} 
                setValue={setValue}
-               toAdd={data.onUpdate}
-               setIsClicked={setIsEdit}/>  
+               toAdd={toPass}
+              />  
 }
         </>
     )

@@ -1,0 +1,25 @@
+.main{
+    position: fixed;
+    height:8vh;
+    z-index:999;
+    width:100%;
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #0072ff;
+}
+
+.svg{ 
+   
+    cursor:pointer;
+    margin-left:60px;
+    cursor:pointer;
+  }
+
+  @media only screen and (max-width:800px){
+    .main{
+        display:none;
+    }
+    
+
+  }

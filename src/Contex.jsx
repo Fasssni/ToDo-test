@@ -45,6 +45,7 @@ export const Context=({children})=>{
   
     const filterExpired=useMemo(()=>{
       const dateNow=dayjs().format("MMM D HH:mm")
+      console.log(dateNow)
       if(tasks){
         return tasks.filter(f=>(dayjs(f.date).format("MMM D HH:mm")<dateNow)&&f.date)}
         else{
@@ -101,11 +102,10 @@ export const Context=({children})=>{
     // Ниже настройки firebase
 
     
-  const [progress,setProgress]=useState("wef")
-
-
   
-  const uploadFiles = (file, setValue,value) => {
+  const [isLoading,setIsLoading]=useState(false)
+  
+  const uploadFiles = (file, setValue) => {
     //
     if (!file) return;
     const sotrageRef = ref(storage, `/to-do-files/${file.name}`);
@@ -117,12 +117,13 @@ export const Context=({children})=>{
         const prog = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
-        setProgress(prog);
+        setIsLoading(true)
       },
       (error) => console.log(error),
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
         console.log("File available at", downloadURL)
+        setIsLoading(false)
         return setValue(prevValue=>{ return{...prevValue,file:downloadURL}})
         }
 
@@ -137,6 +138,8 @@ export const Context=({children})=>{
    
   //// Выше настройки firebase
 
+  const [burger,setBurger]=useState(true)
+
     const value={
         tasks,
         addTask,
@@ -148,6 +151,9 @@ export const Context=({children})=>{
         completedTasks,
         onUpdate,
         uploadFiles,
+        burger, 
+        setBurger,
+        isLoading,
     }
     
    console.log(filterToday)

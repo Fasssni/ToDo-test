@@ -18,18 +18,36 @@ body{
 .main_view{ 
     position:relative;
     width:70%;
-    margin-left:20%;
+    margin-left:40%;
+  
+    height:110vh;
+    display:flex;
+    flex-direction: column;
+    align-items: left;
+    gap:4;
+    justify-content: flex-start;
+    margin-top:8vh;
+    transition: 0.5s;
+
+}
+.main_view_on{ 
+    position:relative;
+    width:70%;
+    margin-left:30%;
     margin-top:0;
     height:110vh;
     display:flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     gap:4;
     justify-content: flex-start;
-
+    margin-top:8vh;
+    transition: 0.5s;
 }
 
+
 .menu{
+    margin-top:8vh;
     position:fixed;
     z-index: 99;
     width:25%;
@@ -38,9 +56,12 @@ body{
     display:flex; 
     justify-content: flex-start;
     align-items: flex-start;
+    transition: .5s;
 
 
 }
+
+
 
 
 li{
@@ -76,7 +97,18 @@ a{
 
 }
 
-.menu_link{ 
+.menu_off{ 
+    margin-top:8vh;
+    position:fixed;
+    z-index: 99;
+    width:25%;
+    margin-left:-25%;
+    height:110vh;
+    background-color: rgb(249, 245, 239);
+    display:flex; 
+    justify-content: flex-start;
+    align-items: flex-start;
+    transition:0.5s ;
    
 
 
@@ -88,20 +120,90 @@ a{
     width:60%;
     justify-content:flex-start;
     cursor: pointer;
+    margin-top:1rem;
 
 }
 
 .icon{
-    width:1.2rem;
+    width:1rem;
     margin-right:.5rem;
 }
 
 .action{
     font-weight: 300;
-    font-size:1rem;
+    font-size:.8rem;
     color:rgb(114, 111, 108)
 }
 
 .action:hover{ 
     color:#0072ff;
 }
+
+.title{ 
+    margin-top:1rem;
+    margin-bottom: .5rem;
+    width:100%;
+    font-size:1rem
+   
+    
+}
+
+.ifno{
+    color:rgb(142, 142, 142);
+    font-size:.7rem;
+}
+
+@media only screen and (max-width:800px){
+    .menu{
+        display:flex;
+        width:100%;
+        justify-content: center;
+        background-color:#0072ff;
+        bottom:0;
+        height:10%;
+        transition: 0;
+    }
+    .group{
+        margin-left:0;
+        margin-top:1.5rem;
+        width:80%;
+        background-color: transparent;
+        display:flex;
+        justify-content: space-between;
+       
+        
+    }
+    .els{
+        padding:5px .3rem;
+        font-size:1rem;
+        color:#0072ff;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+
+       
+        
+        
+    }
+    .title{
+       
+    }
+    .main_view{
+        position:relative;
+        width:100%;
+        margin-left:10%;
+        margin-top:0;
+        height:110vh;
+        display:flex;
+        flex-direction: column;
+        align-items: left;
+        gap:4;
+        justify-content: flex-start;
+        margin-top:0;
+        transition: 0.5s;
+        
+
+    }
+    
+
+  }

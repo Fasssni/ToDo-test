@@ -1,11 +1,10 @@
 .main{
     width:60%;
     height:auto;
-    border:1px solid silver;
+    border:1px solid #f0f0f0;
     border-right: 0;
     border-left: 0;
-    
-    
+    cursor: pointer;
     display:flex;
     justify-content: space-between;
     align-items: center;
@@ -14,7 +13,7 @@
 }
 
 .left__side{
-    
+    width:70%;
     margin-left:0;
     display:flex;
     height:100%;
@@ -58,33 +57,52 @@
     justify-content: center;
     align-items: flex-start;
     overflow: hidden;
+    width:60%;
     
   
 }
 
 .title{ 
-    font-size:1rem;
+    font-size:0.8rem;
     margin-top:.7rem;
 }
 
 .dates{
     display:flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-top:.5rem;
     font-size:0.6rem;
 
 }
 .desc{
     margin-top:0;
-    font-size:0.9rem;
+    font-size:0.6rem;
 }
 
 .dateStart{
     color:green;
-    margin-right:1rem;
+    
 }
 .date{
     color:red;
     margin-top:0;
+
     
+}
+
+.sep{
+    width:100%;
+    display:flex;
+}
+
+.file{
+    display: flex;
+    width:40%;
+    align-items:center;
+    font-size:0.7rem;
+    text-decoration: underline;
+}
+
+.file_text:hover{
+    color:#0072ff;
 }

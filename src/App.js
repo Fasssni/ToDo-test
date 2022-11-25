@@ -8,6 +8,7 @@ import Today from "./pages/Today";
 import Upcoming from "./pages/Upcoming";
 import useLocalStorage from "./useLocalStorage"
 import "./style.css" 
+import { NavBar } from "./components/NavBar/NavBar";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
     
 
     <BrowserRouter>
+    <NavBar></NavBar>
     <Menu></Menu>
     
      <Routes>

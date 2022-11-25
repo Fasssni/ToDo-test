@@ -10,21 +10,26 @@ import Upcoming from "../../pages/Upcoming";
 
 
 
-const Adder=({toAdd,value,setValue,setIsClicked})=>{ 
 
-    const  uploadFiles=useContext(TaskContext).uploadFiles
+const Adder=({toAdd,value,setValue,setIsClicked})=>{ 
+    
+    const {uploadFiles,isLoading}=useContext(TaskContext)
+    const [isAdded,setIsAdded]=useState(false)
+    
+    
     
     const universalFuncion=()=>{
         toAdd(value)
-        setIsClicked(true)
     }
-
     const fileHandler = (e) => {
         e.preventDefault();
+        setIsAdded(true)
         const file = e.target[0].files[0];
-        uploadFiles(file, setValue,value);
+        uploadFiles(file,setValue)
+
       };
-    
+      
+       
 
     
     return(
@@ -58,11 +63,18 @@ const Adder=({toAdd,value,setValue,setIsClicked})=>{
                          value={value.date}
                          onChange={(e)=>setValue({...value,date:e.target.value})}/>
             </div> 
-                 <form onSubmit={fileHandler}>
-                    <input  type="file" className="input"/>
+                 <form onSubmit={fileHandler}  >
+                    <input type="file" className="input"/>
                     <button type="submit">Upload</button>
+                    {
+                        isAdded?<p>Файл{
+                        isLoading?<span>грузится...</span>
+                        : 
+                        <span>загружен</span>}
+                    </p>
+                    :<></>}
                 </form>
-     
+                
     
 
             

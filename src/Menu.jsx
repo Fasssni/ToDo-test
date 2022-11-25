@@ -1,12 +1,17 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { TaskContext } from "./Contex";
+import today from "./assets/today.svg"
+import completed from "./assets/completed.svg"
+import upcoming from "./assets/upcoming.svg"
 
 const Menu=()=>{
     const origin=window.location.origin
     const [location,setLocation]=useState(window.location)
-    const [el, setEl]=useState([{name:"Upcoming",to:"/upcoming", loc:location==origin+"/upcoming"},{name:"Today",to:"/today",loc:location==origin+"/today"},{name:"Completed",to:"/completed",loc:location==origin+"/completed"}])
+    const [el, setEl]=useState([{name:"Предстоящие",to:"/upcoming",icon:upcoming,loc:location==origin+"/upcoming"},{name:"Сегодня",to:"/today",icon:today,loc:location==origin+"/today"},{name:"Выполненные",to:"/completed",icon:completed,loc:location==origin+"/completed"}])
 
-    // useMemo(()=>{
+    // useEffect(()=>{
     // setEl(prevEl=>{
     //     return prevEl.map(p=>{
     //         return{...p,loc:location==origin+p.to}
@@ -14,9 +19,9 @@ const Menu=()=>{
     // })}, [location])
     // console.log(el)
    
-    const setL=()=>{
-        setTimeout(()=>setLocation(window.location),5)
-    }
+    // const setL=()=>{
+    //     setTimeout(()=>setLocation(window.location),5)
+    // }
 
     
     
@@ -33,20 +38,21 @@ const Menu=()=>{
         })
         
 
-    // useEffect(()=>{setLoc()},[location])
+   
 
-    
+    const {burger}=useContext(TaskContext)
 
     
 
     return( 
-        <div className="menu">
+        <div className={burger?"menu":"menu_off"}>
         <ul className="group">
             {el.map(p=>
             <Link onClick={()=>setLoc(p.to)}  to={p.to} >
                  <div 
                      style={{background:p.loc?"rgb(174, 168, 161)":"white"}} 
                     className={"els"}>
+                   <img className="icon"src={p.icon}/>
                    <li className="menu_link">{p.name}</li> 
                  </div>
             </Link>
