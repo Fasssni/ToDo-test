@@ -21,7 +21,8 @@ const Adder=({toAdd,value,setValue,setIsClicked})=>{
 
     const fileHandler = (e) => {
         e.preventDefault();
-        setIsAdded(true)
+
+        e.target[0].files[0]?setIsAdded(true):setIsAdded(false)
         const file = e.target[0].files[0];
         uploadFiles(file,setValue)
         
@@ -58,7 +59,7 @@ const Adder=({toAdd,value,setValue,setIsClicked})=>{
 
               
                 {input?
-                   <form className={cl.form}onClick= {(e)=>e.stopPropagation()} onSubmit={fileHandler}>
+                   <form className={cl.form} onClick= {(e)=>e.stopPropagation()} onSubmit={fileHandler}>
                                           
                                             <input className={cl.input_file} onChange={e=>setTrack(e.target.value)}id="file" type="file" title="wefew" placeholder="" />
                                             {trackfile?<p>Файл выбран, загрузите его</p>:<></>}
@@ -69,12 +70,13 @@ const Adder=({toAdd,value,setValue,setIsClicked})=>{
                                                         :
                                                         <></>}
                                             <button className={cl.submit}  type="submit">Загрузить файл</button>
-                                            { isAdded?<p>Файл {
+                                            {isAdded?<p>Файл {
                                                 isLoading?<span>грузится...</span>
                                                 : 
                                                 <span>загружен</span>}
+                                                
                                             </p>
-                                             :<></>}
+                                             :<p>Выберите файл выше</p>}
                 </form>
                 :
                 <p className={cl.text}onClick={()=>setInput(true)}>Загрузить файл..</p>
