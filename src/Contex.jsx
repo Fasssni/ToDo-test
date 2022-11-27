@@ -13,8 +13,8 @@ export const TaskContext=createContext()
 
 export const Context=({children})=>{ 
 
-    dayjs.extend(relativeTime)
-    const [tasks,setTask]=useLocalStorage("TASK",[])
+  
+    const [tasks,setTask]=useLocalStorage("TASK",[]) // кастом хук. все даннные будут собираться  в локал сторидже. СМ.файл useLocalStorage.js 
 
     const addTask=(newTask)=>{ 
       setTask([...tasks,newTask])
@@ -43,32 +43,28 @@ export const Context=({children})=>{
 
     }
     
-  
+    //фукнция фильтрации просроченных по времени задач
     const filterExpired=useMemo(()=>{
       const dateNow=dayjs().format("MMM D HH:mm")
       console.log(dateNow)
       if(tasks){
         return tasks.filter(f=>(dayjs(f.date).format("MMM D HH:mm")<dateNow)&&f.date)}
         else{
-
           return null
-
         }
     }, [tasks])
 
-
+   //функция фильтрации задач на сегодня
     const filterToday=useMemo(()=>{
       const dateNow=dayjs()
       if(tasks){
         return tasks.filter(f=>(!filterExpired.includes(f))&&(!f.dateStart||dayjs(f.dateStart).format("D")-dayjs().format("D")<1)&&f.complete!==true)}
         else{
-
           return null
-
         }
     }, [filterExpired,tasks])
 
-
+    //функция фильтрации предстоящих задач
     const filterUpcoming=useMemo(()=>{
       const dateNow=dayjs()
       if(tasks){
@@ -78,14 +74,15 @@ export const Context=({children})=>{
           return null
         }
     }, [filterToday,filterExpired,tasks])
-
+    
+    //функция фильтрации выполненных задач
     const completedTasks=useMemo(()=>{
                             return tasks.filter(f2=>f2.complete==true)
     
     },[tasks])
-
+    
+    //редактирование задач
     const onUpdate=(edited)=>{
-       
        setTask(prevTask=>{
         return prevTask.map(x=>{
           if(x.id==edited.id){
@@ -100,18 +97,16 @@ export const Context=({children})=>{
  
 
 
-    // Ниже настройки firebase
 
     
   
   const [isLoading,setIsLoading]=useState(false)
   
+  // загрузка файлов в firebase. принимает файл, сохраняет его в файрбейс, сохраняет url в localstorage
   const uploadFiles = (file, setValue) => {
-    //
     if (!file) return;
     const sotrageRef = ref(storage, `/to-do-files/${file.name}`);
     const uploadTask = uploadBytesResumable(sotrageRef, file);
-
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -126,23 +121,16 @@ export const Context=({children})=>{
         console.log("File available at", downloadURL)
         setIsLoading(false)
         return setValue(prevValue=>{ return{...prevValue,file:downloadURL}})
-        }
-
-      
-         
-
-      
+        }      
         );
       }
     );
   };
    
-  //// Выше настройки firebase
+ 
 
   const [value,setValue]=useState({id:uuidV4(),title:"", desc:"", dateStart:"", date: "",complete:false, file:null})
-
   const [burger,setBurger]=useState(true)
-
   const [modal,setModal]=useState(false)
 
     const val={

@@ -10,12 +10,12 @@ const Menu=()=>{
     const origin=window.location.origin
     const [location,setLocation]=useState(window.location)
 
-    const forceUpdate = useReducer(x => x + 1, 0)[1]
+    const [val, setForceRender]=useState(true)
     
     const {burger, filterToday,completedTasks,filterUpcoming,tasks}=useContext(TaskContext)
-    const [el, setEl]=useState([{name:"Предстоящие",to:"/upcoming",icon:upcoming,loc:location==origin+"/upcoming", amount:filterUpcoming.length},
-                                {name:"Сегодня",to:"/today",icon:today,loc:location==origin+"/today",amount:filterToday.length},
-                                {name:"Выполненные",to:"/completed",icon:completed,loc:location==origin+"/completed", amount:completedTasks.length}])
+    const [el, setEl]=useState([{name:"Предстоящие",to:"/upcoming",icon:upcoming,loc:location==origin+"/upcoming", amount:filterUpcoming},
+                                {name:"Сегодня",to:"/today",icon:today,loc:location==origin+"/today",amount:filterToday},
+                                {name:"Выполненные",to:"/completed",icon:completed,loc:location==origin+"/completed", amount:completedTasks}])
 
     // useEffect(()=>{
     // setEl(prevEl=>{
@@ -47,9 +47,17 @@ const Menu=()=>{
    
 
   
-    // useEffect(()=>{ 
-    //     forceUpdate()
-    // }, [filterToday],[filterUpcoming],[completedTasks])
+    const getQuant=(p)=>{
+        if(p.to=="/upcoming"){
+            return filterUpcoming.length>0?filterUpcoming.length:<></>
+        }else if(p.to=="/today"){ 
+            return filterToday.length>0?filterToday.length:<></>
+        }
+        else if(p.to=="/completed"){ 
+            return completedTasks.length>0?completedTasks.length:<></>
+        }
+
+    }
     
     
 
@@ -65,8 +73,7 @@ const Menu=()=>{
                 
                    <img className="icon"src={p.icon}/>
                    <li className="menu_link">{p.name}</li> 
-                   
-                
+                   <span>{getQuant(p)}</span>
                  </div>
             </Link>
             )
