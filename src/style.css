@@ -80,7 +80,7 @@ a{
 .els{ 
     width:100%;
     display:flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     
     padding: 5px 15px;
@@ -153,6 +153,11 @@ a{
     font-size:.7rem;
 }
 
+
+
+.quantity{
+    margin-left:1rem;
+}
 @media only screen and (max-width:800px){
     .menu{
         display:flex;
@@ -175,7 +180,7 @@ a{
     }
     .els{
         padding:5px .3rem;
-        font-size:1rem;
+        font-size:.7rem;
         color:#0072ff;
         display:flex;
         justify-content: center;

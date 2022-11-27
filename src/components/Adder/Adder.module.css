@@ -48,8 +48,8 @@
     width:30%;
     border:none;
     outline:none;
-    background-color: #0072ff;
-    color:white;
+    background-color: transparent;
+    color:black;
     
 }
 .btns{
@@ -99,6 +99,34 @@
     color:red;
     margin-right:0.8rem;
 }
+
+.form{
+    margin-top:1rem;
+    position:relative;
+    display:flex;
+    flex-direction: column;
+}
+
+.a_hover:hover{
+    color:#0072ff;
+}
+
+.text{ 
+    margin-top:1rem;
+    cursor:pointer;
+
+}
+
+.text:hover{
+    color:#0072ff;
+
+}
+.submit{
+    margin-top:1rem;
+     
+
+}
+
 
 @media only screen and (max-width:800px){
     .inputs{

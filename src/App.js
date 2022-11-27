@@ -24,6 +24,7 @@ function App() {
     <BrowserRouter>
     <NavBar></NavBar>
     <Menu></Menu>
+  
     
      <Routes>
       <Route path="/" element={<Today/>}/>

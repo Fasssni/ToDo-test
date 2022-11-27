@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useReducer, useState } from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { TaskContext } from "./Contex";
@@ -9,7 +9,13 @@ import upcoming from "./assets/upcoming.svg"
 const Menu=()=>{
     const origin=window.location.origin
     const [location,setLocation]=useState(window.location)
-    const [el, setEl]=useState([{name:"Предстоящие",to:"/upcoming",icon:upcoming,loc:location==origin+"/upcoming"},{name:"Сегодня",to:"/today",icon:today,loc:location==origin+"/today"},{name:"Выполненные",to:"/completed",icon:completed,loc:location==origin+"/completed"}])
+
+    const forceUpdate = useReducer(x => x + 1, 0)[1]
+    
+    const {burger, filterToday,completedTasks,filterUpcoming,tasks}=useContext(TaskContext)
+    const [el, setEl]=useState([{name:"Предстоящие",to:"/upcoming",icon:upcoming,loc:location==origin+"/upcoming", amount:filterUpcoming.length},
+                                {name:"Сегодня",to:"/today",icon:today,loc:location==origin+"/today",amount:filterToday.length},
+                                {name:"Выполненные",to:"/completed",icon:completed,loc:location==origin+"/completed", amount:completedTasks.length}])
 
     // useEffect(()=>{
     // setEl(prevEl=>{
@@ -36,12 +42,15 @@ const Menu=()=>{
                 }
             })
         })
-        
-
+         
+  
    
 
-    const {burger}=useContext(TaskContext)
-
+  
+    // useEffect(()=>{ 
+    //     forceUpdate()
+    // }, [filterToday],[filterUpcoming],[completedTasks])
+    
     
 
     return( 
@@ -49,11 +58,15 @@ const Menu=()=>{
         <ul className="group">
             {el.map(p=>
             <Link onClick={()=>setLoc(p.to)}  to={p.to} >
+              
                  <div 
                      style={{background:p.loc?"rgb(174, 168, 161)":"white"}} 
-                    className={"els"}>
+                    className="els">
+                
                    <img className="icon"src={p.icon}/>
                    <li className="menu_link">{p.name}</li> 
+                   
+                
                  </div>
             </Link>
             )

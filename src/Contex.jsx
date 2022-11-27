@@ -5,6 +5,7 @@ import dayjs from "dayjs"
 import relativeTime from "dayjs/plugin/relativeTime"
 import {storage} from "./firebase"
 import {getDownloadURL,ref,uploadBytesResumable} from "@firebase/storage"
+import {v4 as uuidV4} from "uuid"
 
 
 
@@ -138,9 +139,13 @@ export const Context=({children})=>{
    
   //// Выше настройки firebase
 
+  const [value,setValue]=useState({id:uuidV4(),title:"", desc:"", dateStart:"", date: "",complete:false, file:null})
+
   const [burger,setBurger]=useState(true)
 
-    const value={
+  const [modal,setModal]=useState(false)
+
+    const val={
         tasks,
         addTask,
         deleteTask,
@@ -154,12 +159,16 @@ export const Context=({children})=>{
         burger, 
         setBurger,
         isLoading,
+        value,
+        setValue,
+        modal,
+        setModal
     }
     
    console.log(filterToday)
 
     return( 
-        <TaskContext.Provider value={value}>
+        <TaskContext.Provider value={val}>
             {children}
         </TaskContext.Provider>
     )

@@ -7,16 +7,19 @@ import dayjs from "dayjs"
 import {v4 as uuidV4} from "uuid"
 import add from "../assets/add.svg"
 
+
 const Today=({onAddTask,tasks,deleteTask})=>{ 
 
   const [isClicked,setIsClicked]=useState(true)
   const [isEdit,setIsEdit]=useState(false)
    
 
-  const [value,setValue]=useState({id:uuidV4(),title:"", desc:"", dateStart:"", date: "",complete:false, file:null})
+ 
 
   const data=useContext(TaskContext)
   const {burger}=useContext(TaskContext)
+
+  const {value,setValue}=useContext(TaskContext)
   
  
 
@@ -92,6 +95,8 @@ const Today=({onAddTask,tasks,deleteTask})=>{
              tasks={tasks}
              value={value}
              setValue={setValue}/>}
+
+  
       
     </div>
     )

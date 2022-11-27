@@ -11,23 +11,31 @@ import Upcoming from "../../pages/Upcoming";
 
 
 
+
 const Adder=({toAdd,value,setValue,setIsClicked})=>{ 
     
-    const {uploadFiles,isLoading}=useContext(TaskContext)
+    const {isLoading,uploadFiles}=useContext(TaskContext)
     const [isAdded,setIsAdded]=useState(false)
-    
-    
-    
-    const universalFuncion=()=>{
-        toAdd(value)
-    }
+    const [input,setInput]=useState(false)
+    const [trackfile,setTrack]=useState("")
+
     const fileHandler = (e) => {
         e.preventDefault();
         setIsAdded(true)
         const file = e.target[0].files[0];
         uploadFiles(file,setValue)
+        
+       
 
       };
+   
+ 
+    
+    
+    const universalFuncion=()=>{
+        toAdd(value)
+    }
+   
       
        
 
@@ -48,7 +56,29 @@ const Adder=({toAdd,value,setValue,setIsClicked})=>{
             value={value.desc}
              onChange={(e)=>setValue({...value,desc:e.target.value})}/>
 
-
+              
+                {input?
+                   <form className={cl.form}onClick= {(e)=>e.stopPropagation()} onSubmit={fileHandler}>
+                                          
+                                            <input className={cl.input_file} onChange={e=>setTrack(e.target.value)}id="file" type="file" title="wefew" placeholder="" />
+                                            {trackfile?<p>Файл выбран, загрузите его</p>:<></>}
+                                            {value.file? 
+                                                        <p>Текущий файл:
+                                                            <a className={cl.a_hover} target="blank" href={value.file}>{value.file.slice(30,72)}..</a>
+                                                            </p> 
+                                                        :
+                                                        <></>}
+                                            <button className={cl.submit}  type="submit">Загрузить файл</button>
+                                            { isAdded?<p>Файл {
+                                                isLoading?<span>грузится...</span>
+                                                : 
+                                                <span>загружен</span>}
+                                            </p>
+                                             :<></>}
+                </form>
+                :
+                <p className={cl.text}onClick={()=>setInput(true)}>Загрузить файл..</p>
+}
             <div className={cl.inputs}>
                  <label className={cl.label_start} for="start">Старт</label>
                  <input className={cl.date} 
@@ -63,17 +93,9 @@ const Adder=({toAdd,value,setValue,setIsClicked})=>{
                          value={value.date}
                          onChange={(e)=>setValue({...value,date:e.target.value})}/>
             </div> 
-                 <form onSubmit={fileHandler}  >
-                    <input type="file" className="input"/>
-                    <button type="submit">Upload</button>
-                    {
-                        isAdded?<p>Файл{
-                        isLoading?<span>грузится...</span>
-                        : 
-                        <span>загружен</span>}
-                    </p>
-                    :<></>}
-                </form>
+            
+                 
+                
                 
     
 
@@ -89,9 +111,8 @@ const Adder=({toAdd,value,setValue,setIsClicked})=>{
                     </button>
             </div>
           
-            
-       
-      
+           
+          
       
 
           

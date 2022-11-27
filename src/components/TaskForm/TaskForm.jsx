@@ -101,6 +101,7 @@ const TaskForm=({task,deleteTask, onComplete})=>{
         <Adder value={value} 
                setValue={setValue}
                toAdd={toPass}
+               setIsClicked={setIsEdit}
               />  
 }
         </>
