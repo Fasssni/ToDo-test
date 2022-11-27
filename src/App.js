@@ -15,7 +15,7 @@ function App() {
   
   const data=useContext(TaskContext)
   
-
+  // весь основной функционал написан в компоненте Contex.jsx
   return (
 
     <div className="App">

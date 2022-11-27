@@ -175,6 +175,7 @@ a{
         background-color: transparent;
         display:flex;
         justify-content: space-between;
+      
        
         
     }
@@ -185,6 +186,7 @@ a{
         display:flex;
         justify-content: space-around;
         align-items: center;
+        
 
        
         
@@ -211,4 +213,15 @@ a{
     }
     
 
+  }
+
+  @media only screen and (max-width:401px){
+        .els{
+            border:none;
+            background-color: transparent;
+           
+        }
+        .menu_link{
+            display:none;
+        }
   }

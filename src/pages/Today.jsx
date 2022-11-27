@@ -29,21 +29,11 @@ const Today=({onAddTask,tasks,deleteTask})=>{
 
 
   const toAdd=(value)=>{ 
-     
-   
-
     if(value.title){
-   
-    
     data.addTask(value)
     setIsClicked(true)
-   
-    
     return(setValue({id:uuidV4(),title:"", desc:"", date: "",status:"", file:null}))
-}
-
-    
-    else{ 
+}else{ 
         alert("Пожалуйста, дайте заголовок задаче")
     }
 }

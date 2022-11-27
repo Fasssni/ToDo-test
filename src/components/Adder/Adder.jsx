@@ -95,14 +95,6 @@ const Adder=({toAdd,value,setValue,setIsClicked})=>{
                          value={value.date}
                          onChange={(e)=>setValue({...value,date:e.target.value})}/>
             </div> 
-            
-                 
-                
-                
-    
-
-            
-
             </div>
             <div className={cl.btns}>
                     <button onClick={()=>setIsClicked(true)} className={cl.button__second} > 
@@ -112,13 +104,6 @@ const Adder=({toAdd,value,setValue,setIsClicked})=>{
                         Добавить задачу
                     </button>
             </div>
-          
-           
-          
-      
-
-          
-
         </div>
 
        

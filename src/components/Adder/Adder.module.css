@@ -105,6 +105,7 @@
     position:relative;
     display:flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .a_hover:hover{
@@ -123,12 +124,17 @@
 }
 .submit{
     margin-top:1rem;
+    width:50%;
      
 
 }
 
 
 @media only screen and (max-width:800px){
+    .container{
+        width:80%;
+        
+    }
     .inputs{
         flex-direction:column;
         width:100%;
@@ -146,12 +152,14 @@
 
     .btns{
         font-size:0.6rem;
+        width:80%;
         
     }
 
-}
-
-@media only screen and (max-width:800px){
+    .Adder{
+        width:100%;
+        
+    }
     .inputs{
         flex-direction:column;
         width:100%;
@@ -167,8 +175,5 @@
         outline:none;
     }
 
-    .btns{
-        font-size:0.6rem;
-    }
-
+    
 }
